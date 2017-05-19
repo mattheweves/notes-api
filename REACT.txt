@@ -1,0 +1,5 @@
+REACT
+
+Front end framework only. Not a full framework that you can build apps on.
+
+All it does is spit out HTML.  

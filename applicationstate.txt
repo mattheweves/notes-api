@@ -1,0 +1,7 @@
+"APPLICATION STATE"
+
+Whenever the state changes in the application, it rerenders itself.
+
+IE, tracks the important components and where they are in their lifecycle.
+
+ 
