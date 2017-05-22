@@ -67,7 +67,7 @@ RSpec.describe NotesController, type: :controller do
     before do
       @note = FactoryGirl.create(:note)
     end
-    
+
     it "should receive the udpated note in response" do
       put :update, params: { id: @note.id, note: { title: 'Updated First', content: 'Updated this note' } }
       json = JSON.parse(response.body)
@@ -86,6 +86,21 @@ RSpec.describe NotesController, type: :controller do
       json = JSON.parse(response.body)
       expect(json["errors"]["content"][0]).to eq("can't be blank")
       expect(json["errors"]["title"][0]).to eq("can't be blank")
+    end
+  end
+
+  describe "notes#destroy action" do
+    before do
+      @note = FactoryGirl.create(:note)
+      delete :destroy, params: { id: @note.id }
+    end
+    it "should destroy a saved note" do
+      note = Note.find_by_id(@note.id)
+      expect(note).to eq nil
+    end
+
+    it "should return no_content status" do
+      expect(response).to have_http_status(:no_content)
     end
   end
 
